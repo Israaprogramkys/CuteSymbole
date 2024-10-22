@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BunnySPACE Symbols</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Gochi+Hand&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fredoka One', sans-serif;
+            background: linear-gradient(to bottom, #ffb3c1, #ffeff1);
+            color: #333;
+            text-align: center;
+        }
+
+        /* Entrance screen */
+        .intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: pink;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .intro h1 {
+            font-family: 'Gochi Hand', cursive;
+            font-size: 6em;
+            color: #ff5e73;
+        }
+
+        .intro p {
+            font-size: 2em;
+            color: #ff5e73;
+            margin-bottom: 30px;
+        }
+
+        .intro .welcome-box {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .intro button {
+            font-family: 'Fredoka One', sans-serif;
+            font-size: 1.5em;
+            background-color: #ff5e73;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .intro button:hover {
+            background-color: #ff7a89;
+        }
+
+        /* Fadeout animation */
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                display: none;
+            }
+        }
+
+        /* Symbols and container */
+        .container {
+            display: none;
+        }
+
+        header {
+            padding: 30px;
+            background-color: #ff7a89;
+        }
+
+        header h1 {
+            font-family: 'Gochi Hand', cursive;
+            font-size: 4em;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            color: #fff7fa;
+        }
+
+        .search-container {
+            margin: 20px 0;
+        }
+
+        .search-container input {
+            padding: 10px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            border: 2px solid #ff7a89;
+        }
+
+        .search-container button {
+            padding: 10px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            border: none;
+            background-color: #ff5e73;
+            color: white;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-container button:hover {
+            background-color: #ff7a89;
+        }
+
+        section {
+            width: 30%;
+            margin: 10px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #ff5e73;
+            margin-bottom: 15px;
+            font-size: 2em;
+        }
+
+        .symbols {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .symbols button {
+            padding: 10px;
+            font-size: 1.5em;
+            border: none;
+            background-color: #ffe6e9;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .symbols button:hover {
+            background-color: #ffb3c1;
+        }
+
+        .symbols button:active {
+            background-color: #ff7a89;
+        }
+
+        .copied-message {
+            display: none;
+            font-size: 2em;
+            color: #ff5e73;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Introduction Screen -->
+<div class="intro">
+    <div class="welcome-box">
+        <h1>BunnySPACE</h1>
+        <p>Bienvenue dans BunnySPACE ! Cliquez sur OK pour continuer.</p>
+        <button onclick="proceed()">OK</button>
+    </div>
+</div>
+
+<!-- Symbols Container -->
+<div class="container">
+    <header>
+        <h1>BunnySPACE</h1>
+        <p>Cliquez sur un symbole pour le copier !</p>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Rechercher des symboles..." oninput="searchSymbols()">
+            <button onclick="searchSymbols()">Rechercher</button>
+        </div>
+    </header>
+
+    <section id="bunnies">
+        <h2>Lapins</h2>
+        <div class="symbols">
+            <button onclick="copySymbol('♘', this)">♘</button>
+            <button onclick="copySymbol('∇', this)">∇</button>
+            <button onclick="copySymbol('⊕', this)">⊕</button>
+            <button onclick="copySymbol('ʘ', this)">ʘ</button>
+            <button onclick="copySymbol('❖', this)">❖</button>
+            <button onclick="copySymbol('↟', this)">↟</button>
+        </div>
+        <div class="copied-message" id="copiedMessageBunnies">Copié !</div>
+    </section>
+
+    <section id="clouds">
+        <h2>Nuages</h2>
+        <div class="symbols">
+            <button onclick="copySymbol('☁', this)">☁</button>
+            <button onclick="copySymbol('≋', this)">≋</button>
+            <button onclick="copySymbol('~', this)">~</button>
+            <button onclick="copySymbol('∿', this)">∿</button>
+            <button onclick="copySymbol('∽', this)">∽</button>
+            <button onclick="copySymbol('⑂', this)">⑂</button>
+        </div>
+        <div class="copied-message" id="copiedMessageClouds">Copié !</div>
+    </section>
+
+    <section id="sports">
+        <h2>Sports</h2>
+        <div class="symbols">
+            <button onclick="copySymbol('⚑', this)">⚑</button>
+            <button onclick="copySymbol('◉', this)">◉</button>
+            <button onclick="copySymbol('〇', this)">〇</button>
+            <button onclick="copySymbol('⛹', this)">⛹</button>
+            <button onclick="copySymbol('⛳', this)">⛳</button>
+            <button onclick="copySymbol('⚽', this)">⚽</button>
+        </div>
+        <div class="copied-message" id="copiedMessageSports">Copié !</div>
+    </section>
+
+    <section id="food">
+        <h2>Nourriture</h2>
+        <div class="symbols">
+            <button onclick="copySymbol('⚐', this)">⚐</button>
+            <button onclick="copySymbol('⚑', this)">⚑</button>
+            <button onclick="copySymbol('⌕', this)">⌕</button>
+            <button onclick="copySymbol('⊛', this)">⊛</button>
+            <button onclick="copySymbol('⏣', this)">⏣</button>
+            <button onclick="copySymbol('❖', this)">❖</button>
+        </div>
+        <div class="copied-message" id="copiedMessageFood">Copié !</div>
+    </section>
+
+    <section id="music">
+        <h2>Musique</h2>
+        <div class="symbols">
+            <button onclick="copySymbol('♪', this)">♪</button>
+            <button onclick="copySymbol('♫', this)">♫</button>
+            <button onclick="copySymbol('𝄞', this)">𝄞</button>
+            <button onclick="copySymbol('♬', this)">♬</button>
+            <button onclick="copySymbol('♩', this)">♩</button>
+            <button onclick="copySymbol('♭', this)">♭</button>
+        </div>
+        <div class="copied-message" id="copiedMessageMusic">Copié !</div>
+    </section>
+
+    <section id="space">
+        <h2>Espace</h2>
+        <div class="symbols">
+            <button onclick="copySymbol('★', this)">★</button>
+            <button onclick="copySymbol('⛢', this)">⛢</button>
+            <button onclick="copySymbol('☉', this)">☉</button>
+            <button onclick="copySymbol('✦', this)">✦</button>
+            <button onclick="copySymbol('⍟', this)">⍟</button>
+            <button onclick="copySymbol('✵', this)">✵</button>
+        </div>
+        <div class="copied-message" id="copiedMessageSpace">Copié !</div>
+    </section>
+
+    <section id="nature">
+        <h2>Nature</h2>
+        <div class="symbols">
+            <button onclick="copySymbol('♣', this)">♣</button>
+            <button onclick="copySymbol('♤', this)">♤</button>
+            <button onclick="copySymbol('❦', this)">❦</button>
+            <button onclick="copySymbol('❧', this)">❧</button>
+            <button onclick="copySymbol('✿', this)">✿</button>
+            <button onclick="copySymbol('❀', this)">❀</button>
+        </div>
+        <div class="copied-message" id="copiedMessageNature">Copié !</div>
+    </section>
+
+    <section id="animals">
+        <h2>Animaux</h2>
+        <div class="symbols">
+            <button onclick="copySymbol('♞', this)">♞</button>
+            <button onclick="copySymbol('❖', this)">❖</button>
+            <button onclick="copySymbol('✾', this)">✾</button>
+            <button onclick="copySymbol('♘', this)">♘</button>
+            <button onclick="copySymbol('⍿', this)">⍿</button>
+            <button onclick="copySymbol('⤙', this)">⤙</button>
+        </div>
+        <div class="copied-message" id="copiedMessageAnimals">Copié !</div>
+    </section>
+
+    <section id="fantasy">
+        <h2>Fantaisie</h2>
+        <div class="symbols">
+            <button onclick="copySymbol('⚔', this)">⚔</button>
+            <button onclick="copySymbol('⛨', this)">⛨</button>
+            <button onclick="copySymbol('✠', this)">✠</button>
+            <button onclick="copySymbol('⟠', this)">⟠</button>
+            <button onclick="copySymbol('⍜', this)">⍜</button>
+            <button onclick="copySymbol('⌬', this)">⌬</button>
+        </div>
+        <div class="copied-message" id="copiedMessageFantasy">Copié !</div>
+    </section>
+
+    <section id="technology">
+        <h2>Technologie</h2>
+        <div class="symbols">
+            <button onclick="copySymbol('⚙', this)">⚙</button>
+            <button onclick="copySymbol('⌁', this)">⌁</button>
+            <button onclick="copySymbol('⎋', this)">⎋</button>
+            <button onclick="copySymbol('⌲', this)">⌲</button>
+            <button onclick="copySymbol('⌘', this)">⌘</button>
+            <button onclick="copySymbol('⌖', this)">⌖</button>
+        </div>
+        <div class="copied-message" id="copiedMessageTechnology">Copié !</div>
+    </section>
+</div>
+
+<script>
+    function proceed() {
+        document.querySelector('.intro').style.animation = 'fadeOut 1s forwards';
+        setTimeout(() => {
+            document.querySelector('.intro').style.display = 'none';
+            document.querySelector('.container').style.display = 'block';
+        }, 1000);
+    }
+
+    function copySymbol(symbol, button) {
+        navigator.clipboard.writeText(symbol).then(() => {
+            const sectionId = button.closest('section').id;
+            const copiedMessage = document.getElementById(`copiedMessage${sectionId.charAt(0).toUpperCase() + sectionId.slice(1)}`);
+            copiedMessage.style.display = 'block';
+            setTimeout(() => {
+                copiedMessage.style.display = 'none';
+            }, 2000);
+        });
+    }
+
+    function searchSymbols() {
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        const sections = document.querySelectorAll('section');
+        
+        sections.forEach(section => {
+            const title = section.querySelector('h2').textContent.toLowerCase();
+            section.style.display = title.includes(input) ? 'block' : 'none';
+        });
+    }
+</script>
+
+</body>
+</html>
